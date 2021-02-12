@@ -1,4 +1,4 @@
-# crud app front end vue practice
+# gallery
 
 ## Project setup
 ```

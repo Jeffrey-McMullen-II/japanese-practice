@@ -1,25 +1,18 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
-import About from '../src/app/about/about.component.vue';
-import Home from '../src/app/home/home.component.vue';
-import Welcome from '../src/app/welcome/welcome.component.vue';
+import Info from '../src/app/info/info.component.vue';
+import Gallery from '../src/app/gallery/gallery.component.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    name: 'Welcome',
-    component: Welcome,
-    props: route => ({ redirectUrl: route.query.redirectUrl })  
+    name: 'Gallery',
+    component: Gallery
   },
   {
-    path: '/home',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/about',
-    name: 'About',
-    component: About
+    path: '/info',
+    name: 'Info',
+    component: Info
   }
 ];
 

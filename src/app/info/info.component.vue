@@ -1,0 +1,1 @@
+<template src="./info.component.html"></template>
