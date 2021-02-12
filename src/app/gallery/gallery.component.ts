@@ -8,16 +8,15 @@ import iPaginationRequest from '@/app/core/shared/models/iPaginationRequest';
 const GalleryModule = namespace('GalleryModule');
 
 export default class Gallery extends Vue {
+  first: number | null = 0;
+  rows: number | null = 1;
+  timeout: number | undefined;
 
   @GalleryModule.Getter('getFiles') getFiles!: iFile[] | null;
   @GalleryModule.Getter('getTotalRecords') getTotalRecords!: number | null;
   @GalleryModule.Getter('getIsLoading') getIsLoading!: boolean | null;
   @GalleryModule.Action('fetchImagePage') fetchImagePage!: (paginationRequest: iPaginationRequest) => void;
   @GalleryModule.Mutation('setIsLoading') setIsLoading!: (isLoading: boolean) => void
-
-  first: number | null = 0;
-  rows: number | null = 1;
-  timeout: number | undefined;
 
   mounted() {
     const paginationRequest: iPaginationRequest = {
