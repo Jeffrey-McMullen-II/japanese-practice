@@ -7,7 +7,7 @@ import iPaginationRequest from '@/app/core/shared/models/iPaginationRequest';
 
 const GalleryModule = namespace('GalleryModule');
 
-export default class About extends Vue {
+export default class Gallery extends Vue {
 
   @GalleryModule.Getter('getFiles') getFiles!: iFile[] | null;
   @GalleryModule.Getter('getTotalRecords') getTotalRecords!: number | null;
