@@ -1,6 +1,6 @@
 <div class="p-grid p-col-12 horizontal-center">
     <div class="p-col-12">
-        <div v-if="getIsLoading">
+        <div v-if="isLoading">
             <div>Loading...</div>
             <br>
             <img
@@ -12,7 +12,7 @@
             />
         </div>
 
-        <div v-if="!getIsLoading && getFiles" v-for="file in getFiles" v-bind:key="file.fileId">
+        <div v-if="!isLoading && files" v-for="file in files" v-bind:key="file.fileId">
             <div>{{ file.fileName }}</div>
             <br>
             <img
@@ -28,7 +28,7 @@
             template="FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
             v-model:first="first"
             v-model:rows="rows"
-            v-model:totalRecords="getTotalRecords"
+            v-model:totalRecords="totalRecords"
             v-on:page="onPaged($event)">
         </p-paginator>
     </div>

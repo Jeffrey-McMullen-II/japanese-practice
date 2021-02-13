@@ -1,6 +1,6 @@
+import { PageState } from 'primevue/paginator';
 import { Vue } from 'vue-class-component';
 import { namespace } from 'vuex-class';
-import { PageState } from 'primevue/paginator';
 
 import iFile from './shared/models/iFile';
 import iPaginationRequest from '@/app/core/shared/models/iPaginationRequest';
@@ -12,19 +12,14 @@ export default class Gallery extends Vue {
   rows: number | null = 1;
   timeout: number | undefined;
 
-  @GalleryModule.Getter('getFiles') getFiles!: iFile[] | null;
-  @GalleryModule.Getter('getTotalRecords') getTotalRecords!: number | null;
-  @GalleryModule.Getter('getIsLoading') getIsLoading!: boolean | null;
+  @GalleryModule.Getter('files') files!: iFile[] | null;
+  @GalleryModule.Getter('totalRecords') totalRecords!: number | null;
+  @GalleryModule.Getter('isLoading') isLoading!: boolean | null;
   @GalleryModule.Action('fetchImagePage') fetchImagePage!: (paginationRequest: iPaginationRequest) => void;
-  @GalleryModule.Mutation('setIsLoading') setIsLoading!: (isLoading: boolean) => void
+  @GalleryModule.Mutation('setIsLoading') setIsLoading!: (isLoading: boolean) => void;
 
   mounted() {
-    const paginationRequest: iPaginationRequest = {
-      first: this.first,
-      rows: this.rows
-    }
-
-    this.fetchImagePage(paginationRequest);
+    this.getImagePage();
   }
 
   onPaged(event: PageState) {
@@ -32,13 +27,15 @@ export default class Gallery extends Vue {
 
     clearTimeout(this.timeout);
 
-    this.timeout = setTimeout(() => {
-      const paginationRequest: iPaginationRequest = {
-        first: event.first,
-        rows: this.rows
-      }
-      
-      this.fetchImagePage(paginationRequest);
-    }, 1000);
+    this.timeout = setTimeout(this.getImagePage, 1000);
+  }
+
+  private getImagePage(event?: PageState) {
+    const paginationRequest: iPaginationRequest = {
+      first: event ? event.first : this.first,
+      rows: this.rows
+    }
+    
+    this.fetchImagePage(paginationRequest);
   }
 }
