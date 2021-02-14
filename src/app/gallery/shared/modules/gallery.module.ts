@@ -17,7 +17,7 @@ export default class GalleryModule extends VuexModule {
 
   @Action
   public async fetchImagePage(paginationRequest: iPaginationRequest) {
-    await axios.post('http://retronova.x10host.com/ng-crud-app-back-end-php/public/api/files/page-request', paginationRequest)
+    await axios.post('http://retronova.x10host.com/api/public/files/page-request', paginationRequest)
     .then((response: AxiosResponse<iPaginationResponse>) => this.context.commit('onImagePageFetched', response.data))
     .catch((error) => console.log(error));
   }
