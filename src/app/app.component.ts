@@ -1,9 +1,9 @@
 import { Options, Vue } from 'vue-class-component';
 
-import Gallery from './gallery/gallery.component.vue';
+import Hiragana from './hiragana/hiragana.component.vue';
 
 @Options({
-    components: { Gallery }
+    components: { Hiragana }
 })
 export default class App extends Vue {
 }

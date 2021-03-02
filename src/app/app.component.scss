@@ -1,5 +1,5 @@
-.clickable {
-  cursor: pointer;
+.display-inline {
+  display: inline-block;
 }
 
 .horizontal-left {
@@ -10,22 +10,28 @@
   text-align: center;
 }
 
+.lateral-padding {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
 .horizontal-right {
   text-align: right;
+}
+
+.writable {
+  cursor: crosshair;
 }
 
 .vertical-center {
   top: 50%;
 }
 
-.spinner-small {
-  font-size: 25px;
+.vertical-top {
+  top: 100%;
 }
 
-.spinner-medium {
-  font-size: 50px;
-}
-
-.spinner-large {
-  font-size: 100px;
+.vertical-padding {
+  padding-top: 1em;
+  padding-bottom: 1em;
 }
