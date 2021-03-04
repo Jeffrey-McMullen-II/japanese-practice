@@ -1,4 +1,4 @@
-# gallery
+# japanese-practice
 
 ## Project setup
 ```

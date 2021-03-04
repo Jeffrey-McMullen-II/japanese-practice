@@ -1,15 +1,16 @@
 import { Options, Vue } from 'vue-class-component';
 
+import { HiraganaCharacters } from '../core/signature-pad-wrapper/shared/models/hiragana-characters/hiragana-characters';
 import iCard from '../core/signature-pad-wrapper/shared/models/card/iCard';
 import iSignaturePadWrapper from '../core/signature-pad-wrapper/iSignaturePadWrapper';
 import SignaturePadWrapper from '../core/signature-pad-wrapper/signature-pad-wrapper.component.vue';
-import { HiraganaCharacters } from '../core/signature-pad-wrapper/shared/models/hiragana-characters/hiragana-characters';
 
 @Options({
   components: { SignaturePadWrapper }
 })
 export default class Hiragana extends Vue {
   readonly ref = 'hiraganaSignaturePad';
+
   options = { backgroundColor: "rgba(60, 145, 241, 0.699)" }
 
   card = HiraganaCharacters[0] as iCard;
@@ -17,6 +18,9 @@ export default class Hiragana extends Vue {
 
   displayFace = true;
   translationVisible = false;
+
+  lockLabel = 'Lock';
+  locked = false;
 
   get cardValue() {
     return this.displayFace ? this.card.face : this.card.back;
@@ -34,7 +38,12 @@ export default class Hiragana extends Vue {
     return this.translationVisible ? 'Hide' : 'Translate';
   }
 
+  get lockStyle() {
+    return this.locked ? 'off-white' : 'white';
+  }
+
   previous() {
+    if (!this.locked) { this.displayFace = true; }
     this.clear();
     this.translationVisible = false;
 
@@ -50,6 +59,7 @@ export default class Hiragana extends Vue {
   }
 
   randomize() {
+    if (!this.locked) { this.displayFace = true; }
     this.clear();
     this.translationVisible = false;
     let newCardFound = false;
@@ -67,6 +77,7 @@ export default class Hiragana extends Vue {
   }
 
   next() {
+    if (!this.locked) { this.displayFace = true; }
     this.clear();
     this.translationVisible = false;
 
@@ -83,6 +94,11 @@ export default class Hiragana extends Vue {
 
   flip() {
     this.displayFace = !this.displayFace;
+  }
+
+  lockClicked() {
+    this.locked = !this.locked;
+    this.lockLabel = this.locked ? 'Unlock' : 'Lock';
   }
 
   onTranslateClicked() {
@@ -108,7 +124,7 @@ export default class Hiragana extends Vue {
     hiraganaPad.clearSignature();
   }
 
-  randomIntFromInterval(min: number, max: number): number {
-    return Math.floor(Math.random() * (max - min + 1) + min);
+  randomIntFromInterval(minInclusive: number, maxInclusive: number): number {
+    return Math.floor(Math.random() * (maxInclusive - minInclusive + 1) + minInclusive);
   }
 }
