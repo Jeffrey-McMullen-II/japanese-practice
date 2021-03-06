@@ -6,12 +6,12 @@ import Welcome from '../src/app/welcome/welcome.component.vue';
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    name: 'Welcome',
+    name: 'welcome',
     component: Welcome
   },
   {
     path: '/hiragana',
-    name: 'Hiragana',
+    name: 'hiragana',
     component: Hiragana
   }
 ];

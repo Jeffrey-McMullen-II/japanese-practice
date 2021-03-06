@@ -9,9 +9,8 @@
                 Hiragana
                 <i v-bind:class="getHiraganaArrow()" style="font-size: small;"></i>
                 <div v-bind:class="getHiraganaContent()" v-on:mouseleave="setHiraganaToggle(false)">
-                    <a v-on:click="onAlphabetLinkClicked()">Hello</a>
-                    <router-link to="/">Welcome</router-link>
-                    <router-link to="/hiragana">Alphabet</router-link>
+                    <a v-on:click="onRouteClicked('/')">Welcome</a>
+                    <a v-on:click="onRouteClicked('/hiragana')">Alphabet</a>
                 </div>
             </button>
         </div>

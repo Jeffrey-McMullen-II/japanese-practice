@@ -16,7 +16,7 @@ export default class AppHeader extends Vue {
         return this.hiraganaToggle ? 'pi pi-chevron-down' : 'pi pi-chevron-right';
     }
 
-    onAlphabetLinkClicked() {
-        console.log('hi');
+    onRouteClicked(route: string) {
+        this.$router.push(route);
     }
 }
