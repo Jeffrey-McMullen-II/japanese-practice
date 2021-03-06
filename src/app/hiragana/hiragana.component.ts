@@ -42,6 +42,10 @@ export default class Hiragana extends Vue {
     return this.locked ? 'off-white' : 'white';
   }
 
+  mounted() {
+    console.log(this.$route);
+  }
+
   previous() {
     if (!this.locked) { this.displayFace = true; }
     this.clear();

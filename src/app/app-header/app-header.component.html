@@ -1,0 +1,20 @@
+<div class="horizontal-center no-padding header-background-color">
+    <div class="navbar">
+        <div class="dropdown">
+            <button
+                class="dropbtn"
+                v-on:mouseover="setHiraganaToggle(true)"
+                v-on:mouseleave="setHiraganaToggle(false)"
+                v-on:click="setHiraganaToggle(!hiraganaToggle)">
+                Hiragana
+                <i v-bind:class="getHiraganaArrow()" style="font-size: small;"></i>
+                <div v-bind:class="getHiraganaContent()" v-on:mouseleave="setHiraganaToggle(false)">
+                    <a v-on:click="onAlphabetLinkClicked()">Hello</a>
+                    <router-link to="/">Welcome</router-link>
+                    <router-link to="/hiragana">Alphabet</router-link>
+                </div>
+            </button>
+        </div>
+    </div>
+
+</div>

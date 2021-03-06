@@ -1,9 +1,9 @@
 import { Options, Vue } from 'vue-class-component';
-
-import Hiragana from './hiragana/hiragana.component.vue';
+import AppHeader from './app-header/app-header.component.vue';
 
 @Options({
-    components: { Hiragana }
+    components: { AppHeader }
 })
 export default class App extends Vue {
+
 }
