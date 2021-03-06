@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { Options, Vue } from 'vue-class-component';
 import SignaturePad from 'signature_pad';
 import mergeImages from 'merge-images';
@@ -40,6 +42,7 @@ export default class SignaturePadWrapper extends Vue {
   cacheImages!: any;
   signatureData = TRANSPARENT_PNG;
   onResizeHandler!: any;
+  canvas: any | null = null;
 
   get propsImagesAndCustomImages() {
     const nonReactiveProrpImages = convertToNonReactive(this.images);
@@ -53,8 +56,8 @@ export default class SignaturePadWrapper extends Vue {
 
   mounted() {
     const { options } = this;
-    const canvas: any = this.$refs[this.canvasRef];
-    const signaturePad = new SignaturePad(canvas, {
+    this.canvas = this.$refs[this.canvasRef];
+    const signaturePad = new SignaturePad(this.canvas, {
       ...DEFAULT_OPTIONS,
       ...options
     });
@@ -65,12 +68,11 @@ export default class SignaturePadWrapper extends Vue {
   }
 
   resizeCanvas() {
-    const canvas: any = this.$refs[this.canvasRef];
     const data = this.signaturePad.toData();
     const ratio = Math.max(window.devicePixelRatio || 1, 1);
-    canvas.width = canvas.offsetWidth * ratio;
-    canvas.height = canvas.offsetHeight * ratio;
-    canvas.getContext('2d').scale(ratio, ratio);
+    this.canvas.width = this.canvas.offsetWidth * ratio;
+    this.canvas.height = this.canvas.offsetHeight * ratio;
+    this.canvas.getContext('2d').scale(ratio, ratio);
     this.signaturePad.clear();
     this.signatureData = TRANSPARENT_PNG;
     this.signaturePad.fromData(data);
