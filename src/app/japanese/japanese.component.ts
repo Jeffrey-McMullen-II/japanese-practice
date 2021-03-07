@@ -1,20 +1,27 @@
 import { Options, Vue } from 'vue-class-component';
+import { namespace } from 'vuex-class';
 
-import { HiraganaCharacters } from '../core/signature-pad-wrapper/shared/models/hiragana-characters/hiragana-characters';
-import iCard from '../core/signature-pad-wrapper/shared/models/card/iCard';
+import iCard from './shared/models/card/iCard';
 import iSignaturePadWrapper from '../core/signature-pad-wrapper/iSignaturePadWrapper';
 import SignaturePadWrapper from '../core/signature-pad-wrapper/signature-pad-wrapper.component.vue';
+
+const JapaneseModule = namespace('JapaneseModule');
 
 @Options({
   components: { SignaturePadWrapper }
 })
-export default class Hiragana extends Vue {
+export default class Japanese extends Vue {
+
+  @JapaneseModule.Getter('content') content!: any | null;
+  @JapaneseModule.Getter('card') card!: iCard | null;
+  @JapaneseModule.Getter('cardIndex') cardIndex!: number | null;
+  @JapaneseModule.Action('onJapaneseRouteSelected') onJapaneseRouteSelected!: (routeName: any) => void;
+  @JapaneseModule.Mutation('setCard') setCard!: (card: iCard) => void;
+  @JapaneseModule.Mutation('setCardIndex') setCardIndex!: (index: number) => void;
+
   readonly ref = 'hiraganaSignaturePad';
 
   options = { backgroundColor: "rgba(60, 145, 241, 0.699)" }
-
-  card = HiraganaCharacters[0] as iCard;
-  cardIndex = 0;
 
   displayFace = true;
   translationVisible = false;
@@ -23,7 +30,7 @@ export default class Hiragana extends Vue {
   locked = false;
 
   get cardValue() {
-    return this.displayFace ? this.card.face : this.card.back;
+    return this.displayFace ? this.card?.face : this.card?.back;
   }
 
   get hasTranslation() {
@@ -31,7 +38,7 @@ export default class Hiragana extends Vue {
   }
 
   get cardTranslation() {
-    return this.translationVisible ? this.card.translation : '';
+    return this.translationVisible ? this.card?.translation : '';
   }
 
   get translateButtonName() {
@@ -42,19 +49,23 @@ export default class Hiragana extends Vue {
     return this.locked ? 'off-white' : 'white';
   }
 
+  mounted() {
+    this.onJapaneseRouteSelected(this.$route.name);
+  }
+
   previous() {
     if (!this.locked) { this.displayFace = true; }
     this.clear();
     this.translationVisible = false;
 
-    if (this.cardIndex > 0) {
-      this.cardIndex--;
-      return this.card = HiraganaCharacters[this.cardIndex];
+    if (this.cardIndex !== null && this.cardIndex > 0) {
+      this.setCardIndex(this.cardIndex - 1);
+      return this.setCard(this.content[this.cardIndex]);
     }
 
     if (this.cardIndex === 0) {
-      this.cardIndex = HiraganaCharacters.length - 1;
-      return this.card = HiraganaCharacters[this.cardIndex];
+      this.setCardIndex(this.content.length - 1);
+      return this.setCard(this.content[this.cardIndex]);
     }
   }
 
@@ -65,12 +76,12 @@ export default class Hiragana extends Vue {
     let newCardFound = false;
 
     while (!newCardFound) {
-      const cardIndex = this.randomIntFromInterval(0, HiraganaCharacters.length - 1);
-      const card = HiraganaCharacters[cardIndex] as iCard;
+      const cardIndex = this.randomIntFromInterval(0, this.content.length - 1);
+      const card = this.content[cardIndex] as iCard;
 
-      if (card.face !== this.card.face) {
-        this.card = card;
-        this.cardIndex = cardIndex;
+      if (card.face !== this.card?.face) {
+        this.setCard(card);
+        this.setCardIndex(cardIndex);
         newCardFound = true;
       }
     }
@@ -81,14 +92,14 @@ export default class Hiragana extends Vue {
     this.clear();
     this.translationVisible = false;
 
-    if (this.cardIndex < HiraganaCharacters.length - 1) {
-      this.cardIndex++;
-      return this.card = HiraganaCharacters[this.cardIndex];
+    if (this.cardIndex !== null && this.cardIndex < this.content.length - 1) {
+      this.setCardIndex(this.cardIndex + 1);
+      return this.setCard(this.content[this.cardIndex]);
     }
 
-    if (this.cardIndex === HiraganaCharacters.length - 1) {
-      this.cardIndex = 0;
-      return this.card = HiraganaCharacters[this.cardIndex];
+    if (this.cardIndex === this.content.length - 1) {
+      this.setCardIndex(0);
+      return this.setCard(this.content[this.cardIndex]);
     }
   }
 
@@ -108,15 +119,6 @@ export default class Hiragana extends Vue {
   undo() {
     const hiraganaPad = this.$refs[this.ref] as iSignaturePadWrapper;
     hiraganaPad.undoSignature();
-  }
-
-  save() {
-    const hiraganaPad = this.$refs[this.ref] as iSignaturePadWrapper;
-    const { isEmpty, data } = hiraganaPad.saveSignature();
-
-    alert("Open DevTools to see the save data.");
-    console.log(isEmpty);
-    console.log(data);
   }
 
   clear() {

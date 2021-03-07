@@ -1,19 +1,12 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
-import Hiragana from '../src/app/hiragana/hiragana.component.vue';
-import Welcome from '../src/app/welcome/welcome.component.vue';
+import Japanese from './app/japanese/japanese.component.vue';
+import Welcome from './app/welcome/welcome.component.vue';
 
 const routes: Array<RouteRecordRaw> = [
-  {
-    path: '/',
-    name: 'welcome',
-    component: Welcome
-  },
-  {
-    path: '/hiragana',
-    name: 'hiragana',
-    component: Hiragana
-  }
+  { path: '/', name: 'welcome', component: Welcome },
+  { path: '/hiragana-alphabet', name: 'hiragana-alphabet', component: Japanese },
+  { path: '/hiragana-words', name: 'hiragana-words', component: Japanese }
 ];
 
 export default createRouter({

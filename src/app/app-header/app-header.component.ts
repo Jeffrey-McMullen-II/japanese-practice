@@ -1,6 +1,11 @@
 import { Vue } from 'vue-class-component';
+import { namespace } from 'vuex-class';
+
+const JapaneseModule = namespace('JapaneseModule');
 
 export default class AppHeader extends Vue {
+    
+    @JapaneseModule.Action('onJapaneseRouteSelected') onJapaneseRouteSelected!: (routeName: any) => void;
 
     hiraganaToggle = false;
 
@@ -17,6 +22,7 @@ export default class AppHeader extends Vue {
     }
 
     onRouteClicked(route: string) {
+        this.onJapaneseRouteSelected(route);
         this.$router.push(route);
     }
 }
