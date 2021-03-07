@@ -1,9 +1,9 @@
 import { Options, Vue } from 'vue-class-component';
 import { namespace } from 'vuex-class';
 
-import iCard from './shared/models/card/iCard';
 import iSignaturePadWrapper from '../core/signature-pad-wrapper/iSignaturePadWrapper';
 import SignaturePadWrapper from '../core/signature-pad-wrapper/signature-pad-wrapper.component.vue';
+import iCard from './shared/models/iCard';
 
 const JapaneseModule = namespace('JapaneseModule');
 
@@ -11,11 +11,10 @@ const JapaneseModule = namespace('JapaneseModule');
   components: { SignaturePadWrapper }
 })
 export default class Japanese extends Vue {
-
-  @JapaneseModule.Getter('content') content!: any | null;
+  @JapaneseModule.Getter('content') content!: any | null; // eslint-disable-line
   @JapaneseModule.Getter('card') card!: iCard | null;
   @JapaneseModule.Getter('cardIndex') cardIndex!: number | null;
-  @JapaneseModule.Action('onJapaneseRouteSelected') onJapaneseRouteSelected!: (routeName: any) => void;
+  @JapaneseModule.Action('onJapaneseContentSelected') onJapaneseContentSelected!: (contentName: any) => void; // eslint-disable-line
   @JapaneseModule.Mutation('setCard') setCard!: (card: iCard) => void;
   @JapaneseModule.Mutation('setCardIndex') setCardIndex!: (index: number) => void;
 
@@ -50,7 +49,7 @@ export default class Japanese extends Vue {
   }
 
   mounted() {
-    this.onJapaneseRouteSelected(this.$route.name);
+    this.onJapaneseContentSelected(this.$route.name);
   }
 
   previous() {

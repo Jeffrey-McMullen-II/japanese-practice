@@ -5,7 +5,7 @@ const JapaneseModule = namespace('JapaneseModule');
 
 export default class AppHeader extends Vue {
     
-    @JapaneseModule.Action('onJapaneseRouteSelected') onJapaneseRouteSelected!: (routeName: any) => void;
+    @JapaneseModule.Action('onJapaneseContentSelected') onJapaneseContentSelected!: (contentName: any) => void; // eslint-disable-line
 
     hiraganaToggle = false;
 
@@ -22,7 +22,7 @@ export default class AppHeader extends Vue {
     }
 
     onRouteClicked(route: string) {
-        this.onJapaneseRouteSelected(route);
+        this.onJapaneseContentSelected(route);
         this.$router.push(route);
     }
 }

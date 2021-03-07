@@ -1,12 +1,11 @@
 import { VuexModule, Module, Mutation, Action } from 'vuex-module-decorators';
 
-import { HiraganaCharacters } from '../models/hiragana/hiragana-characters';
-import { HiraganaWords } from '../models/hiragana/hiragana-words';
-import iCard from '../models/card/iCard';
+import { FlashCardGroups } from '../models/flash-card-groups';
+import iCard from '../models/iCard';
 
 @Module({ namespaced: true })
 export default class JapaneseModule extends VuexModule {
-  private _content: any | null = null;
+  private _content: iCard[] | null = null;
   private _card: iCard | null = null;
   private _cardIndex: number | null = null;
 
@@ -14,26 +13,25 @@ export default class JapaneseModule extends VuexModule {
   get card() { return this._card; }
   get cardIndex() { return this._cardIndex; }
 
-  @Action
-  public onJapaneseRouteSelected(routeName: string) {
-    if (routeName === 'hiragana-alphabet') { this.context.commit('setJapaneseContent', HiraganaCharacters); }
-    if (routeName === 'hiragana-words') { this.context.commit('setJapaneseContent', HiraganaWords); }
+  @Action onJapaneseContentSelected(contentName: string) {
+    const content = FlashCardGroups.get(contentName) as iCard[];
+
+    if (content && content.length) {
+      this.context.commit('setJapaneseContent', content);
+    }
   }
 
-  @Mutation
-  public setJapaneseContent(content: any) {
+  @Mutation setJapaneseContent(content: iCard[]) {
     this._content = content;
     this._card = content[0];
     this._cardIndex = 0;
   }
 
-  @Mutation
-  public setCard(card: iCard) {
+  @Mutation setCard(card: iCard) {
     this._card = card;
   }
 
-  @Mutation
-  public setCardIndex(cardIndex: number) {
+  @Mutation setCardIndex(cardIndex: number) {
     this._cardIndex = cardIndex;
   }
 }

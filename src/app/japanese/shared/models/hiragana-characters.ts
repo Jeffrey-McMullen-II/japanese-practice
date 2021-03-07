@@ -1,4 +1,4 @@
-import iCard from "../card/iCard";
+import iCard from "./iCard";
 
 export const HiraganaCharacters: iCard[] = [
 
