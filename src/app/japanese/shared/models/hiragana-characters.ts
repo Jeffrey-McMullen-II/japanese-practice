@@ -22,9 +22,10 @@ export const HiraganaCharacters: iCard[] = [
     {face: 'そ', back: 'so', translation: ''},
 
     {face: 'た', back: 'ta', translation: ''},
-    {face: 'ち', back: 'chi', translation: ''},
+    {face: 'ち', back: 'chi', translation: 'blood'},
     {face: 'つ', back: 'tsu', translation: ''},
-    {face: 'て', back: 'te', translation: ''},
+    {face: 'っ', back: 'chisaitsu', translation: 'small tsu (prolongs consonants)'},
+    {face: 'て', back: 'te', translation: 'hand'},
     {face: 'と', back: 'to', translation: ''},
 
     {face: 'な', back: 'na', translation: ''},
@@ -42,7 +43,7 @@ export const HiraganaCharacters: iCard[] = [
     {face: 'ま', back: 'ma', translation: ''},
     {face: 'み', back: 'mi', translation: ''},
     {face: 'む', back: 'mu', translation: ''},
-    {face: 'め', back: 'me', translation: ''},
+    {face: 'め', back: 'me', translation: 'eye'},
     {face: 'も', back: 'mo', translation: ''},
 
     {face: 'や', back: 'ya', translation: ''},
@@ -68,14 +69,14 @@ export const HiraganaCharacters: iCard[] = [
     {face: 'ご', back: 'go', translation: ''},
 
     {face: 'ざ', back: 'za', translation: ''},
-    {face: 'じ', back: 'ji', translation: ''},
-    {face: 'ず', back: 'zu', translation: ''},
+    {face: 'じ', back: 'ji', translation: 'letter, character'},
+    {face: 'ず', back: 'zu', translation: 'diagram'},
     {face: 'ぜ', back: 'ze', translation: ''},
     {face: 'ぞ', back: 'zo', translation: ''},
 
     {face: 'だ', back: 'da', translation: ''},
     {face: 'ぢ', back: 'ji', translation: ''},
-    {face: 'づ', back: 'zu', translation: ''},
+    {face: 'づ', back: 'dzu', translation: ''},
     {face: 'で', back: 'de', translation: ''},
     {face: 'ど', back: 'do', translation: ''},
 
@@ -136,4 +137,4 @@ export const HiraganaCharacters: iCard[] = [
     {face: 'ぴゃ', back: 'pya', translation: ''},
     {face: 'ぴゅ', back: 'pyu', translation: ''},
     {face: 'ぴょ', back: 'pyo', translation: ''}
-]
+];
