@@ -35,7 +35,7 @@ export const HiraganaCharacters: iCard[] = [
     {face: 'の', back: 'no', translation: ''},
 
     {face: 'は', back: 'ha', translation: ''},
-    {face: 'ひ', back: 'hi', translation: ''},
+    {face: 'ひ', back: 'hi', translation: 'day'},
     {face: 'ふ', back: 'fu', translation: ''},
     {face: 'へ', back: 'he', translation: ''},
     {face: 'ほ', back: 'ho', translation: ''},
@@ -118,7 +118,7 @@ export const HiraganaCharacters: iCard[] = [
     {face: 'みょ', back: 'myo', translation: ''},
 
     {face: 'りゃ', back: 'rya', translation: ''},
-    {face: 'りゅ', back: 'ryu', translation: ''},
+    {face: 'りゅ', back: 'ryu', translation: 'dragon'},
     {face: 'りょ', back: 'ryo', translation: ''},
 
     /* 拗音 (youon) with 濁点 (dakuten) and 半濁点 (handakuten) */
