@@ -8,17 +8,30 @@ export default class AppHeader extends Vue {
     @JapaneseModule.Action('onJapaneseContentSelected') onJapaneseContentSelected!: (contentName: any) => void; // eslint-disable-line
 
     hiraganaToggle = false;
-
-    setHiraganaToggle(value: boolean) {
-        this.hiraganaToggle = value;
-    }
+    katakanaToggle = false;
 
     getHiraganaContent() {
         return this.hiraganaToggle ? 'dropdown-content show' : 'dropdown-content';
     }
 
+    getKatakanaContent() {
+        return this.katakanaToggle ? 'dropdown-content show' : 'dropdown-content';
+    }
+
     getHiraganaArrow() {
         return this.hiraganaToggle ? 'pi pi-chevron-down' : 'pi pi-chevron-right';
+    }
+
+    getKatakanaArrow() {
+        return this.katakanaToggle ? 'pi pi-chevron-down' : 'pi pi-chevron-right';
+    }
+
+    setHiraganaToggle(value: boolean) {
+        this.hiraganaToggle = value;
+    }
+
+    setKatakanaToggle(value: boolean) {
+        this.katakanaToggle = value;
     }
 
     onRouteClicked(route: string) {
