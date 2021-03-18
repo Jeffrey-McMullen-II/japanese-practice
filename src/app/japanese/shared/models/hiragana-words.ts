@@ -108,5 +108,5 @@ export const HiraganaWords: iCard[] = [
     {face: 'しんぶん', back: 'shinbun', translation: 'newspaper'},
     {face: 'おかさん', back: 'okasan', translation: 'mother'},
     {face: 'みずをのむ', back: 'mizuwonomu', translation: 'to drink water'},
-    {face: 'やさいわたべる', back: 'yasaiwotaberu', translation: 'to eat vegetables'},
+    {face: 'やさいわたべる', back: 'yasaiwotaberu', translation: 'to eat vegetables'}
 ];
