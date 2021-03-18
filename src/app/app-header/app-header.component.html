@@ -17,6 +17,7 @@
                 <i v-bind:class="getKatakanaArrow()" style="font-size: small;"></i>
                 <div v-bind:class="getKatakanaContent()" v-on:mouseleave="setKatakanaToggle(false)">
                     <a v-on:click="onRouteClicked('katakana-characters')">Characters</a>
+                    <a v-on:click="onRouteClicked('katakana-words')">Words</a>
                 </div>
             </button>
         </div>
