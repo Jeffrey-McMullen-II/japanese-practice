@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router';
 
 import Japanese from './app/japanese/japanese.component.vue';
 import Info from './app/info/info.component.vue';
