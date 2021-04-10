@@ -106,7 +106,7 @@ export default class Japanese extends Vue {
     this.displayFace = !this.displayFace;
   }
 
-  lockClicked() {
+  onLockClicked() {
     this.locked = !this.locked;
     this.lockLabel = this.locked ? 'Unlock' : 'Lock';
   }
