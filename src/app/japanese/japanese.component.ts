@@ -44,7 +44,7 @@ export default class Japanese extends Vue {
     return this.translationVisible ? 'Hide' : 'Translate';
   }
 
-  get lockStyle() {
+  get cardLockStyle() {
     return this.locked ? 'off-white' : 'white';
   }
 
