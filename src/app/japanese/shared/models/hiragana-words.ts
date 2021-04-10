@@ -13,7 +13,7 @@ export const HiraganaWords: iCard[] = [
     {face: 'きおく', back: 'kioku', translation: 'memory'},
     {face: 'えいが', back: 'eiga', translation: 'movie'},
     {face: 'おおきい', back: 'ookii', translation: 'big'},
-    {face: 'すし', back: 'sushi', translation: ''},
+    {face: 'すし', back: 'sushi', translation: 'famouse japanese dish'},
     {face: 'じこ', back: 'jiko', translation: 'accident'},
     {face: 'すき', back: 'suki', translation: 'like'},
     {face: 'さく', back: 'saku', translation: 'bloom'},
@@ -108,5 +108,5 @@ export const HiraganaWords: iCard[] = [
     {face: 'しんぶん', back: 'shinbun', translation: 'newspaper'},
     {face: 'おかさん', back: 'okasan', translation: 'mother'},
     {face: 'みずをのむ', back: 'mizuwonomu', translation: 'to drink water'},
-    {face: 'やさいわたべる', back: 'yasaiwotaberu', translation: 'to eat vegetables'}
+    {face: 'やさいわたべる', back: 'yasaiwataberu', translation: 'to eat vegetables'}
 ];
