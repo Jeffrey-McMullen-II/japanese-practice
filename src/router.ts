@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
-import Japanese from './app/japanese/japanese.component.vue';
 import Info from './app/info/info.component.vue';
+import Japanese from './app/japanese/japanese.component.vue';
 
 export default createRouter({
   history: createWebHistory(process.env.BASE_URL),
