@@ -22,26 +22,16 @@
         </p-card>
     </div>
     
-    <div class="vertical-padding" v-if="!hasTranslation">
-        <div class="display-inline lateral-padding">
-            <p-button class="width-100px" label="Flip" v-on:click="flip()"></p-button>
-        </div>
-    
-        <div class="display-inline lateral-padding">
-            <p-button class="width-100px" v-bind:label="lockLabel" v-on:click="onLockClicked()"></p-button>
-        </div>
-    </div>
-    
-    <div class="vertical-padding" v-if="hasTranslation">
+    <div class="vertical-padding">
         <div class="display-inline">
             <p-button class="width-100px" label="Flip" v-on:click="flip()"></p-button>
         </div>
     
-        <div class="display-inline lateral-padding">
+        <div v-bind:class="lockClass">
             <p-button class="width-100px" v-bind:label="lockLabel" v-on:click="onLockClicked()"></p-button>
         </div>
        
-        <div class="display-inline">
+        <div class="display-inline" v-if="hasTranslation">
             <p-button class="width-100px" v-bind:label="translateButtonName" v-on:click="onTranslateClicked()"></p-button>
         </div>
     </div>

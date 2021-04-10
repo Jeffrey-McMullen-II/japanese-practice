@@ -48,6 +48,10 @@ export default class Japanese extends Vue {
     return this.locked ? 'off-white' : 'white';
   }
 
+  get lockClass() {
+    return this.hasTranslation ? 'display-inline lateral-padding' : 'display-inline left-padding';
+  }
+
   mounted() {
     this.onJapaneseContentSelected(this.$route.name);
   }
