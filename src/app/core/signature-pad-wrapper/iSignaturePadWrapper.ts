@@ -4,7 +4,7 @@ export default interface iSignaturePadWrapper {
   data: any,
 
   /* Methods */
-  saveSignature: any,
-  undoSignature: any,
-  clearSignature: any
+  saveSignature: Function,
+  undoSignature: Function,
+  clearSignature: Function
 }
