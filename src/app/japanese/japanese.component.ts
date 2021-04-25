@@ -19,6 +19,7 @@ export default class Japanese extends Vue {
   @JapaneseModule.Mutation('setCardIndex') setCardIndex!: (index: number) => void;
 
   readonly signaturePadRef = 'signaturePad';
+  signaturePad: iSignaturePadWrapper | null = null;
 
   options = { backgroundColor: "rgba(60, 145, 241, 0.699)" }
 
@@ -54,6 +55,7 @@ export default class Japanese extends Vue {
 
   mounted() {
     this.onJapaneseContentSelected(this.$route.name);
+    this.signaturePad = this.$refs[this.signaturePadRef] as iSignaturePadWrapper;
   }
 
   previous() {
@@ -120,13 +122,15 @@ export default class Japanese extends Vue {
   }
 
   undo() {
-    const signaturePad = this.$refs[this.signaturePadRef] as iSignaturePadWrapper;
-    signaturePad.undoSignature();
+    if (this.signaturePad) {
+      this.signaturePad.undoSignature();
+    }
   }
 
   clear() {
-    const signaturePad = this.$refs[this.signaturePadRef] as iSignaturePadWrapper;
-    signaturePad.clearSignature();
+    if (this.signaturePad) {
+      this.signaturePad.clearSignature();
+    }
   }
 
   randomIntFromInterval(minInclusive: number, maxInclusive: number): number {
