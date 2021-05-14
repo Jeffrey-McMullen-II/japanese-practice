@@ -1,8 +1,6 @@
 import iCard from "./iCard";
 
 export const KatakanaCharacters: iCard[] = [
-
-    /* The 46 Basic Characters */
     {face: 'ア', back: 'a', translation: ''},
     {face: 'イ', back: 'i', translation: 'Stomach'},
     {face: 'ウ', back: 'u', translation: ''},

@@ -1,8 +1,6 @@
 import iCard from "./iCard";
 
 export const HiraganaCharacters: iCard[] = [
-
-    /* The 46 Basic Characters */
     {face: 'あ', back: 'a', translation: ''},
     {face: 'い', back: 'i', translation: 'Stomach'},
     {face: 'う', back: 'u', translation: ''},
