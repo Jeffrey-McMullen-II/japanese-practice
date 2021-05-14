@@ -6,7 +6,7 @@
                 <i v-bind:class="getHiraganaArrow()" style="font-size: small;"></i>
                 <div v-bind:class="getHiraganaContent()" v-on:mouseleave="setHiraganaToggle(false)">
                     <a v-on:click="onRouteClicked('hiragana-characters')">Characters</a>
-                    <a v-on:click="onRouteClicked('hiragana-words')">Words</a>
+                    <a v-on:click="onRouteClicked('hiragana-vocabulary')">Vocabulary</a>
                 </div>
             </button>
         </div>
@@ -17,7 +17,7 @@
                 <i v-bind:class="getKatakanaArrow()" style="font-size: small;"></i>
                 <div v-bind:class="getKatakanaContent()" v-on:mouseleave="setKatakanaToggle(false)">
                     <a v-on:click="onRouteClicked('katakana-characters')">Characters</a>
-                    <a v-on:click="onRouteClicked('katakana-words')">Words</a>
+                    <a v-on:click="onRouteClicked('katakana-vocabulary')">Vocabulary</a>
                 </div>
             </button>
         </div>

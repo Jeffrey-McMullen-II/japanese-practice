@@ -1,6 +1,6 @@
 import iCard from "./iCard";
 
-export const KatakanaWords: iCard[] = [
+export const KatakanaVocabulary: iCard[] = [
     {face: 'エコ', back: 'eko', translation: 'eco-friendly'},
     {face: 'ギア', back: 'giya', translation: 'gear'},
     {face: 'カカオ', back: 'kakao', translation: 'cacao'},

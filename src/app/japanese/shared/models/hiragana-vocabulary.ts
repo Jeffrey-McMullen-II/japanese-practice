@@ -1,6 +1,6 @@
 import iCard from "./iCard";
 
-export const HiraganaWords: iCard[] = [
+export const HiraganaVocabulary: iCard[] = [
     {face: 'あい', back: 'ai', translation: 'love'},
     {face: 'うえ', back: 'ue', translation: 'up, above'},
     {face: 'いいえ', back: 'iie', translation: 'no'},
