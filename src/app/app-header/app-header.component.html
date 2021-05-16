@@ -21,5 +21,16 @@
                 </div>
             </button>
         </div>
+        
+        <div class="dropdown">
+            <button class="dropbtn" v-on:mouseover="setKanjiToggle(true)" v-on:mouseleave="setKanjiToggle(false)" v-on:click="setKanjiToggle(!kanjiToggle)">
+                Kanji
+                <i v-bind:class="getKanjiArrow()" style="font-size: small;"></i>
+                <div v-bind:class="getKanjiContent()" v-on:mouseleave="setKanjiToggle(false)">
+                    <a v-on:click="onRouteClicked('kanji-radicals-n5')">N5 Radicals</a>
+                    <a v-on:click="onRouteClicked('kanji-vocabulary-n5')">N5 Vocabulary</a>
+                </div>
+            </button>
+        </div>
     </div>
 </div>

@@ -9,6 +9,7 @@ export default class AppHeader extends Vue {
 
     hiraganaToggle = false;
     katakanaToggle = false;
+    kanjiToggle = false;
 
     getHiraganaContent() {
         return this.hiraganaToggle ? 'dropdown-content show' : 'dropdown-content';
@@ -16,6 +17,10 @@ export default class AppHeader extends Vue {
 
     getKatakanaContent() {
         return this.katakanaToggle ? 'dropdown-content show' : 'dropdown-content';
+    }
+
+    getKanjiContent() {
+        return this.kanjiToggle ? 'dropdown-content show' : 'dropdown-content';
     }
 
     getHiraganaArrow() {
@@ -26,12 +31,20 @@ export default class AppHeader extends Vue {
         return this.katakanaToggle ? 'pi pi-chevron-down' : 'pi pi-chevron-right';
     }
 
+    getKanjiArrow() {
+        return this.kanjiToggle ? 'pi pi-chevron-down' : 'pi pi-chevron-right';
+    }
+
     setHiraganaToggle(value: boolean) {
         this.hiraganaToggle = value;
     }
 
     setKatakanaToggle(value: boolean) {
         this.katakanaToggle = value;
+    }
+
+    setKanjiToggle(value: boolean) {
+        this.kanjiToggle = value;
     }
 
     onRouteClicked(route: string) {
