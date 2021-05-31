@@ -1,8 +1,8 @@
 import iCard from "./iCard";
 
 export const KanjiRadicalsN5: iCard[] = [
-    {face: '一', back: 'いち', translation: 'one'},
     {face: '丨', back: 'ぼう', translation: 'line, stick'},
+    {face: '一', back: 'いち', translation: 'one'},
     {face: '乙 (乚)', back: 'おつ', translation: 'the second'},
     {face: '二', back: 'に', translation: 'two'},
     {face: '人(亻)', back: 'にんべん', translation: 'person radical on the left'},
