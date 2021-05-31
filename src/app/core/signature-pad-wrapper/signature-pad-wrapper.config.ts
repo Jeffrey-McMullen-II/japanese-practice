@@ -16,8 +16,7 @@ export const DEFAULT_OPTIONS = {
 };
 
 // eslint-disable-next-line
-export const convertToNonReactive = (observerValue: any) =>
-  JSON.parse(JSON.stringify(observerValue));
+export const convertToNonReactive = (observerValue: any) => JSON.parse(JSON.stringify(observerValue));
 
 export const TRANSPARENT_PNG = {
   src: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=',
