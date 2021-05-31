@@ -1,14 +1,16 @@
 import { Options, Vue } from 'vue-class-component';
 import { namespace } from 'vuex-class';
 
+import iCard from './shared/models/iCard';
 import iSignaturePadWrapper from '../core/signature-pad-wrapper/iSignaturePadWrapper';
 import SignaturePadWrapper from '../core/signature-pad-wrapper/signature-pad-wrapper.component.vue';
-import iCard from './shared/models/iCard';
 
 const JapaneseModule = namespace('JapaneseModule');
 
 @Options({
-  components: { SignaturePadWrapper }
+  components: { SignaturePadWrapper },
+  props: { routeName: { type: String } },
+  watch: { routeName: function (routeName: string) { this.onRouteNameChanged(routeName); } }
 })
 export default class Japanese extends Vue {
   @JapaneseModule.Getter('content') content!: any | null; // eslint-disable-line
@@ -56,6 +58,10 @@ export default class Japanese extends Vue {
   mounted() {
     this.onJapaneseContentSelected(this.$route.name);
     this.signaturePad = this.$refs[this.signaturePadRef] as iSignaturePadWrapper;
+  }
+
+  onRouteNameChanged(routeName: string) {
+    this.onJapaneseContentSelected(routeName);
   }
 
   previous() {
