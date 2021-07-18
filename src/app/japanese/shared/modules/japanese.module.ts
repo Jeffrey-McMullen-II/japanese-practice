@@ -1,6 +1,6 @@
 import { VuexModule, Module, Mutation, Action } from 'vuex-module-decorators';
 
-import { FlashCardGroups } from '../models/flash-card-groups';
+import { FlashCardDecks } from '../models/flash-card-decks';
 import iCard from '../models/iCard';
 
 @Module({ namespaced: true })
@@ -14,7 +14,7 @@ export default class JapaneseModule extends VuexModule {
   get cardIndex() { return this._cardIndex; }
 
   @Action onJapaneseContentSelected(contentName: string) {
-    const content = FlashCardGroups.get(contentName) as iCard[];
+    const content = FlashCardDecks.get(contentName) as iCard[];
 
     if (content && content.length) {
       this.context.commit('setJapaneseContent', content);

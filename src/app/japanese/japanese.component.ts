@@ -39,7 +39,7 @@ export default class Japanese extends Vue {
     return !!this.card?.translation;
   }
 
-  get cardTranslation() {
+  get cardTranslations() {
     return this.translationVisible ? this.card?.translation : '';
   }
 
@@ -141,5 +141,10 @@ export default class Japanese extends Vue {
 
   randomIntFromInterval(minInclusive: number, maxInclusive: number): number {
     return Math.floor(Math.random() * (maxInclusive - minInclusive + 1) + minInclusive);
+  }
+
+  // eslint-disable-next-line
+  isKanji(cardValue: any): boolean {
+    return 'object' === typeof cardValue;
   }
 }

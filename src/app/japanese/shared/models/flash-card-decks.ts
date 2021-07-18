@@ -6,7 +6,7 @@ import { KanjiRadicalsN5 } from "./kanji-radicals-n5";
 import { KanjiVocabularyN5 } from "./kanji-vocabulary-n5";
 import iCard from "./iCard";
 
-export const FlashCardGroups: Map<string, iCard[]> = new Map<string, iCard[]>([
+export const FlashCardDecks: Map<string, iCard[]> = new Map<string, iCard[]>([
   ['hiragana-characters', HiraganaCharacters],
   ['hiragana-vocabulary', HiraganaVocabulary],
   ['katakana-characters', KatakanaCharacters],

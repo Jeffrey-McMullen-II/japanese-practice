@@ -14,10 +14,15 @@
     </div>
     
     <div class="display-inline lateral-padding">
-        <p-card style="height: 125px; min-width: 150px;" v-bind:class="cardLockStyle">
+        <p-card style="min-height: 138px; min-width: 150px; max-width: 315px" v-bind:class="cardLockStyle">
             <template #content>
-                <div class="vertical-top" style="font-size:xx-large;">{{ cardValue }}</div>
-                <div> {{ cardTranslation }} </div>
+                <div v-if="isKanji(cardValue)" class="vertical-top horizontal-left" style="font-size:x-large;">
+                    <span class="horizontal-center" style="font-size: 26px;">音読み: </span>{{ cardValue.onYomi }}
+                    <br>
+                    <span class="horizontal-center" style="font-size: 26px;">訓読み: </span>{{ cardValue.kunYomi }}
+                </div>
+                <div v-else class="vertical-top" style="font-size:xx-large;">{{ cardValue }}</div>
+                <div style="font-size: 20px;">{{ cardTranslations }}</div>
             </template>
         </p-card>
     </div>
