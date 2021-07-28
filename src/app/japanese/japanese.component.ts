@@ -2,6 +2,7 @@ import { Options, Vue } from 'vue-class-component';
 import { namespace } from 'vuex-class';
 
 import iCard from './shared/models/iCard';
+import iKanji from './shared/models/iKanji';
 import iSignaturePadWrapper from '../core/signature-pad-wrapper/iSignaturePadWrapper';
 import SignaturePadWrapper from '../core/signature-pad-wrapper/signature-pad-wrapper.component.vue';
 
@@ -144,7 +145,7 @@ export default class Japanese extends Vue {
   }
 
   // eslint-disable-next-line
-  isKanji(cardValue: any): boolean {
+  isKanji(cardValue: string | iKanji): boolean {
     return 'object' === typeof cardValue;
   }
 }
