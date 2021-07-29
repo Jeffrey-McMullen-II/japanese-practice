@@ -5,8 +5,8 @@
                 Hiragana
                 <i v-bind:class="getHiraganaArrow()" style="font-size: small;"></i>
                 <div v-bind:class="getHiraganaContent()" v-on:mouseleave="setHiraganaToggle(false)">
-                    <a v-on:click="onRouteClicked('hiragana-characters')">Characters</a>
-                    <a v-on:click="onRouteClicked('hiragana-vocabulary')">Vocabulary</a>
+                    <a v-on:click="onDeckClicked('hiragana-characters')">Characters</a>
+                    <a v-on:click="onDeckClicked('hiragana-vocabulary')">Vocabulary</a>
                 </div>
             </button>
         </div>
@@ -16,8 +16,8 @@
                 Katakana
                 <i v-bind:class="getKatakanaArrow()" style="font-size: small;"></i>
                 <div v-bind:class="getKatakanaContent()" v-on:mouseleave="setKatakanaToggle(false)">
-                    <a v-on:click="onRouteClicked('katakana-characters')">Characters</a>
-                    <a v-on:click="onRouteClicked('katakana-vocabulary')">Vocabulary</a>
+                    <a v-on:click="onDeckClicked('katakana-characters')">Characters</a>
+                    <a v-on:click="onDeckClicked('katakana-vocabulary')">Vocabulary</a>
                 </div>
             </button>
         </div>
@@ -27,8 +27,8 @@
                 Kanji
                 <i v-bind:class="getKanjiArrow()" style="font-size: small;"></i>
                 <div v-bind:class="getKanjiContent()" v-on:mouseleave="setKanjiToggle(false)">
-                    <a v-on:click="onRouteClicked('kanji-radicals-n5')">N5 Radicals</a>
-                    <a v-on:click="onRouteClicked('kanji-vocabulary-n5')">N5 Vocabulary</a>
+                    <a v-on:click="onDeckClicked('kanji-radicals-n5')">N5 Radicals</a>
+                    <a v-on:click="onDeckClicked('kanji-vocabulary-n5')">N5 Vocabulary</a>
                 </div>
             </button>
         </div>

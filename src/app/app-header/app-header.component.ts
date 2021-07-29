@@ -5,7 +5,7 @@ const JapaneseModule = namespace('JapaneseModule');
 
 export default class AppHeader extends Vue {
     
-    @JapaneseModule.Action('onJapaneseContentSelected') onJapaneseContentSelected!: (contentName: any) => void; // eslint-disable-line
+    @JapaneseModule.Action('changeDeck') changeDeck!: (deckName: any) => void; // eslint-disable-line
 
     hiraganaToggle = false;
     katakanaToggle = false;
@@ -47,8 +47,8 @@ export default class AppHeader extends Vue {
         this.kanjiToggle = value;
     }
 
-    onRouteClicked(route: string) {
-        this.onJapaneseContentSelected(route);
+    onDeckClicked(route: string) {
+        this.changeDeck(route);
         this.$router.push(route);
     }
 }

@@ -5,25 +5,25 @@ import iCard from '../models/iCard';
 
 @Module({ namespaced: true })
 export default class JapaneseModule extends VuexModule {
-  private _content: iCard[] | null = null;
+  private _deck: iCard[] | null = null;
   private _card: iCard | null = null;
   private _cardIndex: number | null = null;
 
-  get content() { return this._content; }
+  get deck() { return this._deck; }
   get card() { return this._card; }
   get cardIndex() { return this._cardIndex; }
 
-  @Action onJapaneseContentSelected(contentName: string) {
-    const content = FlashCardDecks.get(contentName) as iCard[];
+  @Action changeDeck(deckName: string) {
+    const deck = FlashCardDecks.get(deckName) as iCard[];
 
-    if (content && content.length) {
-      this.context.commit('setJapaneseContent', content);
+    if (deck && deck.length) {
+      this.context.commit('setDeck', deck);
     }
   }
 
-  @Mutation setJapaneseContent(content: iCard[]) {
-    this._content = content;
-    this._card = content[0];
+  @Mutation setDeck(deck: iCard[]) {
+    this._deck = deck;
+    this._card = deck[0];
     this._cardIndex = 0;
   }
 

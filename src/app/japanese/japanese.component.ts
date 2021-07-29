@@ -11,13 +11,13 @@ const JapaneseModule = namespace('JapaneseModule');
 @Options({
   components: { SignaturePadWrapper },
   props: { routeName: { type: String } },
-  watch: { routeName: function (routeName: string) { this.onRouteNameChanged(routeName); } }
+  watch: { routeName: function (routeName: string) { this.onRouteChanged(routeName); } }
 })
 export default class Japanese extends Vue {
-  @JapaneseModule.Getter('content') content!: any | null; // eslint-disable-line
+  @JapaneseModule.Getter('deck') deck!: any | null; // eslint-disable-line
   @JapaneseModule.Getter('card') card!: iCard | null;
   @JapaneseModule.Getter('cardIndex') cardIndex!: number | null;
-  @JapaneseModule.Action('onJapaneseContentSelected') onJapaneseContentSelected!: (contentName: any) => void; // eslint-disable-line
+  @JapaneseModule.Action('changeDeck') changeDeck!: (deckName: any) => void; // eslint-disable-line
   @JapaneseModule.Mutation('setCard') setCard!: (card: iCard) => void;
   @JapaneseModule.Mutation('setCardIndex') setCardIndex!: (index: number) => void;
 
@@ -57,12 +57,12 @@ export default class Japanese extends Vue {
   }
 
   mounted() {
-    this.onJapaneseContentSelected(this.$route.name);
+    this.changeDeck(this.$route.name);
     this.signaturePad = this.$refs[this.signaturePadRef] as iSignaturePadWrapper;
   }
 
-  onRouteNameChanged(routeName: string) {
-    this.onJapaneseContentSelected(routeName);
+  onRouteChanged(routeName: string) {
+    this.changeDeck(routeName);
   }
 
   previous() {
@@ -72,12 +72,12 @@ export default class Japanese extends Vue {
 
     if (this.cardIndex !== null && this.cardIndex > 0) {
       this.setCardIndex(this.cardIndex - 1);
-      return this.setCard(this.content[this.cardIndex]);
+      return this.setCard(this.deck[this.cardIndex]);
     }
 
     if (this.cardIndex === 0) {
-      this.setCardIndex(this.content.length - 1);
-      return this.setCard(this.content[this.cardIndex]);
+      this.setCardIndex(this.deck.length - 1);
+      return this.setCard(this.deck[this.cardIndex]);
     }
   }
 
@@ -88,8 +88,8 @@ export default class Japanese extends Vue {
     let newCardFound = false;
 
     while (!newCardFound) {
-      const cardIndex = this.randomIntFromInterval(0, this.content.length - 1);
-      const card = this.content[cardIndex] as iCard;
+      const cardIndex = this.randomIntFromInterval(0, this.deck.length - 1);
+      const card = this.deck[cardIndex] as iCard;
 
       if (card.face !== this.card?.face) {
         this.setCard(card);
@@ -104,14 +104,14 @@ export default class Japanese extends Vue {
     this.clear();
     this.translationVisible = false;
 
-    if (this.cardIndex !== null && this.cardIndex < this.content.length - 1) {
+    if (this.cardIndex !== null && this.cardIndex < this.deck.length - 1) {
       this.setCardIndex(this.cardIndex + 1);
-      return this.setCard(this.content[this.cardIndex]);
+      return this.setCard(this.deck[this.cardIndex]);
     }
 
-    if (this.cardIndex === this.content.length - 1) {
+    if (this.cardIndex === this.deck.length - 1) {
       this.setCardIndex(0);
-      return this.setCard(this.content[this.cardIndex]);
+      return this.setCard(this.deck[this.cardIndex]);
     }
   }
 
@@ -144,7 +144,6 @@ export default class Japanese extends Vue {
     return Math.floor(Math.random() * (maxInclusive - minInclusive + 1) + minInclusive);
   }
 
-  // eslint-disable-next-line
   isKanji(cardValue: string | iKanji): boolean {
     return 'object' === typeof cardValue;
   }
