@@ -62,13 +62,18 @@ export default class Japanese extends Vue {
   }
 
   onRouteChanged(routeName: string) {
+    this.initializeDisplay();
     this.changeDeck(routeName);
   }
 
-  previous() {
+  initializeDisplay() {
     if (!this.locked) { this.displayFace = true; }
     this.clear();
     this.translationVisible = false;
+  }
+
+  previous() {
+    this.initializeDisplay();
 
     if (this.cardIndex !== null && this.cardIndex > 0) {
       this.setCardIndex(this.cardIndex - 1);
@@ -82,9 +87,8 @@ export default class Japanese extends Vue {
   }
 
   randomize() {
-    if (!this.locked) { this.displayFace = true; }
-    this.clear();
-    this.translationVisible = false;
+    this.initializeDisplay();
+
     let newCardFound = false;
 
     while (!newCardFound) {
@@ -100,9 +104,7 @@ export default class Japanese extends Vue {
   }
 
   next() {
-    if (!this.locked) { this.displayFace = true; }
-    this.clear();
-    this.translationVisible = false;
+    this.initializeDisplay();
 
     if (this.cardIndex !== null && this.cardIndex < this.deck.length - 1) {
       this.setCardIndex(this.cardIndex + 1);
