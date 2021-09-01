@@ -38,7 +38,7 @@ export const KanjiRadicalsN5: iCard[] = [
     {face: '火 (灬)', back: 'ひ', translation: 'fire'},
     {face: '父', back: 'ちち', translation: 'father'},
     {face: '生', back: 'うまれる', translation: 'life'},
-    {face: '田', back: 'た', translation: 'ta'},
+    {face: '田', back: 'た', translation: 'rice field, rice patty'},
     {face: '白', back: 'しろ', translation: 'white'},
     {face: '行', back: 'ぎょう', translation: 'go, do'},
     {face: '西 (襾,覀)', back: 'にし', translation: 'west'},
