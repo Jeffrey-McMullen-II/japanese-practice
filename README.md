@@ -1,4 +1,4 @@
-# japanese-practice
+# japanese-flashcards
 
 ## Project setup
 ```
