@@ -13,32 +13,27 @@
         </div>
     </div>
     
-    <div class="display-inline lateral-padding">
-        <p-card style="min-height: 138px; min-width: 150px; max-width: 315px" v-bind:class="cardLockStyle">
-            <template #content>
+    <div class="display-inline lateral-padding padding-bottom">
+        <p-card style="min-height: 138px; min-width: 150px; max-width: 315px" v-bind:class="cardLockClass">
+            <template #header>
+                <div class="padding-top" style="clear: both;">
+                    <span class="float-left lateral-padding pi pi-refresh clickable" style="font-size: large;" v-on:click="flip()"></span>
+                    <span v-bind:class="lockClass" style="font-size: large;" v-on:click="onLockClicked()"></span>
+                </div>
+            </template>
+            
+            <template #content class="no-vertical-padding">
                 <div v-if="isKanji(cardValue)" class="vertical-top horizontal-left" style="font-size:x-large;">
-                    <span class="horizontal-center" style="font-size: 26px;">音読み: </span>{{ cardValue.onYomi }}
+                    <span style="font-size: 26px;">音読み: </span> {{ cardValue.onYomi }}
                     <br>
-                    <span class="horizontal-center" style="font-size: 26px;">訓読み: </span>{{ cardValue.kunYomi }}
+                    <span style="font-size: 26px;">訓読み: </span> {{ cardValue.kunYomi }}
                 </div>
                 <div v-else class="vertical-top" style="font-size:xx-large;">{{ cardValue }}</div>
-                <div style="font-size: 20px;">{{ cardTranslations }}</div>
+
+                <p-button v-if="hasTranslation && !translationVisible" label="Translate" v-on:click="onTranslateClicked()"></p-button>
+                <div v-if="hasTranslation && translationVisible" style="font-size: 20px;">{{ cardTranslations }}</div>
             </template>
         </p-card>
-    </div>
-    
-    <div class="vertical-padding">
-        <div class="display-inline">
-            <p-button class="width-100px" label="Flip" v-on:click="flip()"></p-button>
-        </div>
-    
-        <div v-bind:class="lockClass">
-            <p-button class="width-100px" v-bind:label="lockLabel" v-on:click="onLockClicked()"></p-button>
-        </div>
-       
-        <div class="display-inline" v-if="hasTranslation">
-            <p-button class="width-100px" v-bind:label="translateButtonName" v-on:click="onTranslateClicked()"></p-button>
-        </div>
     </div>
     
     <signature-pad-wrapper
@@ -47,8 +42,8 @@
         height="250px"
         v-bind:options="options"
         v-bind:ref="signaturePadRef"
-        v-bind:refName="signaturePadRef"
-    />
+        v-bind:refName="signaturePadRef">
+    </signature-pad-wrapper>
     
     <div class="vertical-padding">
         <div class="display-inline lateral-padding">

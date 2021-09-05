@@ -29,7 +29,7 @@ export default class Japanese extends Vue {
   displayFace = true;
   translationVisible = false;
 
-  lockLabel = 'Lock';
+  defaultLockClass = 'float-right lateral-padding clickable';
   locked = false;
 
   get cardValue() {
@@ -44,16 +44,12 @@ export default class Japanese extends Vue {
     return this.translationVisible ? this.card?.translation : '';
   }
 
-  get translateButtonName() {
-    return this.translationVisible ? 'Hide' : 'Translate';
-  }
-
-  get cardLockStyle() {
+  get cardLockClass() {
     return this.locked ? 'off-white' : 'white';
   }
 
   get lockClass() {
-    return this.hasTranslation ? 'display-inline lateral-padding' : 'display-inline left-padding';
+    return this.locked ? `${this.defaultLockClass} pi pi-lock` : `${this.defaultLockClass} pi pi-unlock`;
   }
 
   mounted() {
@@ -67,8 +63,8 @@ export default class Japanese extends Vue {
   }
 
   initializeDisplay() {
-    if (!this.locked) { this.displayFace = true; }
     this.clear();
+    this.displayFace = !this.locked;
     this.translationVisible = false;
   }
 
@@ -123,7 +119,6 @@ export default class Japanese extends Vue {
 
   onLockClicked() {
     this.locked = !this.locked;
-    this.lockLabel = this.locked ? 'Unlock' : 'Lock';
   }
 
   onTranslateClicked() {

@@ -1,17 +1,29 @@
-.off-white {
-  background-color: rgb(222, 222, 222);
+.clickable {
+  cursor: pointer;
 }
 
 .display-inline {
   display: inline-block;
 }
 
-.horizontal-left {
-  text-align: left;
+.float-left {
+	float: left;
+}
+
+.float-right {
+	float: right;
 }
 
 .horizontal-center {
   text-align: center;
+}
+
+.horizontal-left {
+  text-align: left;
+}
+
+.horizontal-right {
+  text-align: right;
 }
 
 .lateral-padding {
@@ -21,10 +33,6 @@
 
 .left-padding {
   padding-left: 1em;
-}
-
-.horizontal-right {
-  text-align: right;
 }
 
 .no-margin {
@@ -39,6 +47,10 @@
   padding-bottom: 0;
   padding-left: 0;
   padding-right: 0;
+}
+
+.off-white {
+  background-color: rgb(222, 222, 222);
 }
 
 .padding-bottom {
@@ -62,14 +74,6 @@
   user-select: none;
 }
 
-.white {
-  background-color: white;
-}
-
-.writable {
-  cursor: crosshair;
-}
-
 .vertical-center {
   top: 50%;
 }
@@ -81,4 +85,12 @@
 .vertical-padding {
   padding-top: 1em;
   padding-bottom: 1em;
+}
+
+.white {
+  background-color: white;
+}
+
+.writable {
+  cursor: crosshair;
 }
