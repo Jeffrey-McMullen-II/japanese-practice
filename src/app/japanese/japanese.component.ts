@@ -34,7 +34,6 @@ export default class Japanese extends Vue {
   displayFace = true;
   translationVisible = false;
 
-  defaultLockClass = 'float-right lateral-padding clickable';
   locked = false;
 
   get cardValue() {
@@ -53,8 +52,12 @@ export default class Japanese extends Vue {
     return this.locked ? 'off-white' : 'white';
   }
 
-  get lockClass() {
-    return this.locked ? `${this.defaultLockClass} pi pi-lock` : `${this.defaultLockClass} pi pi-unlock`;
+  get lockIcon() {
+    return this.locked ? 'pi pi-lock' : 'pi pi-unlock';
+  }
+
+  get translateClass() {
+    return this.translationVisible ? '' : 'background-color: gray';
   }
 
   get strokes() {

@@ -14,23 +14,27 @@
     </div>
     
     <div class="display-inline lateral-padding padding-bottom">
-        <p-card style="min-height: 138px; min-width: 150px; max-width: 315px" v-bind:class="cardLockClass">
-            <template #header>
-                <div class="padding-top" style="clear: both;">
-                    <span class="float-left lateral-padding pi pi-refresh clickable" style="font-size: large;" v-on:click="flip()"></span>
-                    <span v-bind:class="lockClass" style="font-size: large;" v-on:click="onLockClicked()"></span>
+        <p-card style="min-height: 176px; min-width: 150px; max-width: 315px" v-bind:class="cardLockClass">
+            <template #subtitle class="no-bottom-padding">
+                <div style="clear: both;">
+                    <span class="horizontal-center lateral-padding">
+                        <p-button icon="pi pi-refresh" style="width:45px; height:25px;" v-on:click="flip()"></p-button>
+                    </span>
+                    <span class="horizontal-center lateral-padding">
+                        <p-button v-bind:icon="lockIcon" style="width:45px; height:25px;" v-on:click="onLockClicked()"></p-button>
+                    </span>
                 </div>
             </template>
             
             <template #content class="no-vertical-padding">
-                <div v-if="isKanji(cardValue)" class="vertical-top horizontal-left" style="font-size:x-large;">
+                <div v-if="isKanji(cardValue)" class="horizontal-left" style="font-size:x-large;">
                     <span style="font-size: 26px;">音読み: </span> {{ cardValue.onYomi }}
                     <br>
                     <span style="font-size: 26px;">訓読み: </span> {{ cardValue.kunYomi }}
                 </div>
-                <div v-else class="vertical-top" style="font-size:xx-large;">{{ cardValue }}</div>
+                <div v-else style="font-size: 35px;">{{ cardValue }}</div>
 
-                <p-button v-if="hasTranslation && !translationVisible" label="Translate" v-on:click="onTranslateClicked()"></p-button>
+                <p-button v-if="hasTranslation && !translationVisible"  label="Translate" style="width:100px; height:25px;" v-on:click="onTranslateClicked()"></p-button>
                 <div v-if="hasTranslation && translationVisible" style="font-size: 20px;">{{ cardTranslations }}</div>
             </template>
         </p-card>
