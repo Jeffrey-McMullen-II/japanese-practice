@@ -1,8 +1,10 @@
+import { Options } from "signature_pad";
+
 export const IMAGE_TYPES: string[] = ['image/png', 'image/jpeg', 'image/svg+xml'];
 
 export const checkSaveType = (type: string) => IMAGE_TYPES.includes(type);
 
-export const DEFAULT_OPTIONS = {
+export const DEFAULT_OPTIONS: Options = {
   dotSize: (0.5 + 2.5) / 2,
   minWidth: 0.5,
   maxWidth: 2.5,

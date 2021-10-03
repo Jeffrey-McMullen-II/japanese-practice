@@ -24,7 +24,12 @@ export default class Japanese extends Vue {
   readonly signaturePadRef = 'signaturePad';
   signaturePad: iSignaturePadWrapper | null = null;
 
-  options = { backgroundColor: "rgba(60, 145, 241, 0.699)" }
+  options = {
+    backgroundColor: "rgba(60, 145, 241, 0.699)",
+    onEnd: this.onStroke.bind(this)
+  }
+
+  strokeCount = 0;
 
   displayFace = true;
   translationVisible = false;
@@ -50,6 +55,10 @@ export default class Japanese extends Vue {
 
   get lockClass() {
     return this.locked ? `${this.defaultLockClass} pi pi-lock` : `${this.defaultLockClass} pi pi-unlock`;
+  }
+
+  get strokes() {
+    return this.card?.strokes;
   }
 
   mounted() {
@@ -125,16 +134,21 @@ export default class Japanese extends Vue {
     this.translationVisible = !this.translationVisible;
   }
 
+  onStroke() {
+    this.strokeCount++;
+  }
+
   undo() {
-    if (this.signaturePad) {
-      this.signaturePad.undoSignature();
+    this.signaturePad?.undoSignature();
+
+    if (--this.strokeCount < 0) {
+      this.strokeCount = 0;
     }
   }
 
   clear() {
-    if (this.signaturePad) {
-      this.signaturePad.clearSignature();
-    }
+    this.signaturePad?.clearSignature();
+    this.strokeCount = 0;
   }
 
   randomIntFromInterval(minInclusive: number, maxInclusive: number): number {

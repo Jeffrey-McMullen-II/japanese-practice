@@ -36,6 +36,7 @@
         </p-card>
     </div>
     
+    <div v-if="strokes">Strokes: {{ strokeCount }} / {{ strokes }}</div>
     <signature-pad-wrapper
         class="writable unselectable"
         width="100%"
