@@ -14,15 +14,15 @@ const JapaneseModule = namespace('JapaneseModule');
   watch: { routeName: function (routeName: string) { this.onRouteChanged(routeName); } }
 })
 export default class Japanese extends Vue {
-  @JapaneseModule.Getter('deck') deck!: any | null; // eslint-disable-line
-  @JapaneseModule.Getter('card') card!: iCard | null;
-  @JapaneseModule.Getter('cardIndex') cardIndex!: number | null;
-  @JapaneseModule.Action('changeDeck') changeDeck!: (deckName: any) => void; // eslint-disable-line
+  @JapaneseModule.Getter('deck') deck!: iCard[];
+  @JapaneseModule.Getter('card') card!: iCard;
+  @JapaneseModule.Getter('cardIndex') cardIndex!: number;
+  @JapaneseModule.Action('changeDeck') changeDeck!: (deckName: string) => void;
   @JapaneseModule.Mutation('setCard') setCard!: (card: iCard) => void;
   @JapaneseModule.Mutation('setCardIndex') setCardIndex!: (index: number) => void;
 
   readonly signaturePadRef = 'signaturePad';
-  signaturePad: iSignaturePadWrapper | null = null;
+  signaturePad!: iSignaturePadWrapper;
 
   options = {
     backgroundColor: "rgba(60, 145, 241, 0.699)",
@@ -32,9 +32,8 @@ export default class Japanese extends Vue {
   strokeCount = 0;
 
   displayFace = true;
-  translationVisible = false;
-
   locked = false;
+  translationVisible = false;
 
   get cardValue() {
     return this.displayFace ? this.card?.face : this.card?.back;
@@ -65,7 +64,7 @@ export default class Japanese extends Vue {
   }
 
   mounted() {
-    this.changeDeck(this.$route.name);
+    this.changeDeck(this.$route.name as string);
     this.signaturePad = this.$refs[this.signaturePadRef] as iSignaturePadWrapper;
   }
 

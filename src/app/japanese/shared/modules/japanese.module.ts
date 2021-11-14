@@ -5,13 +5,13 @@ import iCard from '../models/iCard';
 
 @Module({ namespaced: true })
 export default class JapaneseModule extends VuexModule {
-  private _deck: iCard[] | null = null;
-  private _card: iCard | null = null;
-  private _cardIndex: number | null = null;
+  private _card!: iCard;
+  private _cardIndex!: number;
+  private _deck!: iCard[];
 
-  get deck() { return this._deck; }
-  get card() { return this._card; }
-  get cardIndex() { return this._cardIndex; }
+  get card(): iCard { return this._card; }
+  get cardIndex(): number { return this._cardIndex; }
+  get deck(): iCard[] { return this._deck; }
 
   @Action changeDeck(deckName: string) {
     const deck = FlashCardDecks.get(deckName) as iCard[];
