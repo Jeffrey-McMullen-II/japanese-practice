@@ -18,10 +18,10 @@
             <template #subtitle class="no-bottom-padding">
                 <div style="clear: both;">
                     <span class="horizontal-center lateral-padding">
-                        <p-button icon="pi pi-refresh" style="width:45px; height:25px;" v-on:click="flip()"></p-button>
+                        <p-button icon="pi pi-refresh" style="width:45px; height:35px;" v-on:click="flip()"></p-button>
                     </span>
                     <span class="horizontal-center lateral-padding">
-                        <p-button v-bind:icon="lockIcon" style="width:45px; height:25px;" v-on:click="onLockClicked()"></p-button>
+                        <p-button v-bind:icon="lockIcon" style="width:45px; height:35px;" v-on:click="onLockClicked()"></p-button>
                     </span>
                 </div>
             </template>
@@ -34,7 +34,7 @@
                 </div>
                 <div v-else style="font-size: 35px;">{{ cardValue }}</div>
 
-                <p-button v-if="hasTranslation && !translationVisible"  label="Translate" style="width:100px; height:25px;" v-on:click="onTranslateClicked()"></p-button>
+                <p-button v-if="hasTranslation && !translationVisible" label="Translate" style="min-width:100px; min-height:35px;" v-on:click="onTranslateClicked()"></p-button>
                 <div v-if="hasTranslation && translationVisible" style="font-size: 20px;">{{ cardTranslations }}</div>
             </template>
         </p-card>
