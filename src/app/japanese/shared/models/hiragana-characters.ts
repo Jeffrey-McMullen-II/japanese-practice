@@ -3,7 +3,7 @@ import iCard from "./iCard";
 export const HiraganaCharacters: iCard[] = [
     {strokes: 3, face: 'あ', back: 'a'},
     {strokes: 2, face: 'い', back: 'i'},
-    {strokes: 0, face: 'う', back: 'u'},
+    {strokes: 2, face: 'う', back: 'u'},
     {strokes: 0, face: 'え', back: 'e'},
     {strokes: 0, face: 'お', back: 'o'},
 

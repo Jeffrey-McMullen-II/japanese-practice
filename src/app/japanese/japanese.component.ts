@@ -5,6 +5,7 @@ import iCard from './shared/models/iCard';
 import iKanji from './shared/models/iKanji';
 import iSignaturePadWrapper from '../core/signature-pad-wrapper/iSignaturePadWrapper';
 import SignaturePadWrapper from '../core/signature-pad-wrapper/signature-pad-wrapper.component.vue';
+import { API_URL } from '@/api-url';
 
 const JapaneseModule = namespace('JapaneseModule');
 
@@ -34,33 +35,42 @@ export default class Japanese extends Vue {
   displayFace = true;
   locked = false;
   translationVisible = false;
+  strokesVisible = false;
 
-  get cardValue() {
+  get cardValue(): string | iKanji {
     return this.displayFace ? this.card?.face : this.card?.back;
   }
 
-  get hasTranslation() {
+  get hasTranslation(): boolean {
     return !!this.card?.translation;
   }
 
-  get cardTranslations() {
+  get cardTranslations(): string | undefined {
     return this.translationVisible ? this.card?.translation : '';
   }
 
-  get cardLockClass() {
+  get cardLockClass(): string {
     return this.locked ? 'off-white' : 'white';
   }
 
-  get lockIcon() {
+  get lockIcon(): string {
     return this.locked ? 'pi pi-lock' : 'pi pi-unlock';
   }
 
-  get translateClass() {
+  get translateClass(): string {
     return this.translationVisible ? '' : 'background-color: gray';
   }
 
-  get strokes() {
+  get strokes(): number | undefined {
     return this.card?.strokes;
+  }
+
+  get showStrokes(): boolean {
+    return this.strokesVisible;
+  }
+
+  get imageContentsUrl(): string {
+    return API_URL + `/files/images/contents?fileName=${this.card?.face}&age=3600`;
   }
 
   mounted() {
@@ -77,6 +87,7 @@ export default class Japanese extends Vue {
     this.clear();
     this.displayFace = !this.locked;
     this.translationVisible = false;
+    this.strokesVisible = false;
   }
 
   previous() {
@@ -134,6 +145,10 @@ export default class Japanese extends Vue {
 
   onTranslateClicked() {
     this.translationVisible = !this.translationVisible;
+  }
+
+  onStrokeDisplayClicked() {
+    this.strokesVisible = !this.strokesVisible;
   }
 
   onStroke() {
