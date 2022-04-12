@@ -13,7 +13,7 @@
         </div>
     </div>
     
-    <div v-if="!showStrokes" class="display-inline lateral-padding padding-bottom">
+    <div v-if="!strokesVisible || strokeImageLoading" class="display-inline lateral-padding padding-bottom">
         <p-card style="min-height: 176px; min-width: 150px; max-width: 315px" v-bind:class="cardLockClass">
             <template #subtitle class="no-bottom-padding">
                 <div style="clear: both;">
@@ -40,22 +40,29 @@
         </p-card>
     </div>
 
-    <object
-        v-if="strokes && showStrokes"
-        style="max-width: 75%; max-height: 218px;"
-        v-bind:data="imageContentsUrl">
-    </object>
+    <img
+        v-if="strokes && strokesVisible && !strokeImageLoading && strokeImageSource"
+        style="max-width: 75%; height: 218px;"
+        v-bind:src="strokeImageSource"
+    />
+    <img
+        v-if="strokes && strokesVisible && !strokeImageLoading && !strokeImageSource"
+        style="max-width: 75%; height: 218px;"
+        src="@/assets/not-found.png"
+    />
 
     <div v-if="strokes">
         <p-button
-            label="Toggle"
-            style="min-width:80px; min-height:20px;"
+            v-bind:icon="strokesVisible ? 'pi pi-refresh' : 'pi pi-pencil'"
             v-on:click="onStrokeDisplayClicked()">
         </p-button>
 
-
-        <div class="display-inline">
+        <div class="display-inline lateral-padding">
             Strokes: {{ strokeCount }} / {{ strokes }}
+        </div>
+
+        <div v-if="strokesVisible && strokeImageLoading" class="display-inline">
+            <div class="pi pi-spin pi-spinner" style="font-size: 1rem"></div>
         </div>
     </div>
 

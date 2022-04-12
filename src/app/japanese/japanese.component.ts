@@ -2,10 +2,10 @@ import { Options, Vue } from 'vue-class-component';
 import { namespace } from 'vuex-class';
 
 import iCard from './shared/models/iCard';
+import iFile from '../core/shared/iFile';
 import iKanji from './shared/models/iKanji';
 import iSignaturePadWrapper from '../core/signature-pad-wrapper/iSignaturePadWrapper';
 import SignaturePadWrapper from '../core/signature-pad-wrapper/signature-pad-wrapper.component.vue';
-import { API_URL } from '@/api-url';
 
 const JapaneseModule = namespace('JapaneseModule');
 
@@ -18,9 +18,9 @@ export default class Japanese extends Vue {
   @JapaneseModule.Getter('deck') deck!: iCard[];
   @JapaneseModule.Getter('card') card!: iCard;
   @JapaneseModule.Getter('cardIndex') cardIndex!: number;
-  @JapaneseModule.Action('changeDeck') changeDeck!: (deckName: string) => void;
-  @JapaneseModule.Mutation('setCard') setCard!: (card: iCard) => void;
-  @JapaneseModule.Mutation('setCardIndex') setCardIndex!: (index: number) => void;
+  @JapaneseModule.Getter('strokeImage') strokeImage!: iFile;
+  @JapaneseModule.Getter('strokeImageLoading') strokeImageLoading!: boolean;
+  @JapaneseModule.Getter('strokesVisible') strokesVisible!: boolean;
 
   readonly signaturePadRef = 'signaturePad';
   signaturePad!: iSignaturePadWrapper;
@@ -31,11 +31,9 @@ export default class Japanese extends Vue {
   }
 
   strokeCount = 0;
-
   displayFace = true;
   locked = false;
   translationVisible = false;
-  strokesVisible = false;
 
   get cardValue(): string | iKanji {
     return this.displayFace ? this.card?.face : this.card?.back;
@@ -65,12 +63,8 @@ export default class Japanese extends Vue {
     return this.card?.strokes;
   }
 
-  get showStrokes(): boolean {
-    return this.strokesVisible;
-  }
-
-  get imageContentsUrl(): string {
-    return API_URL + `/files/images/contents?fileName=${this.card?.face}&age=3600`;
+  get strokeImageSource(): string | ArrayBuffer | null {
+    return this.strokeImage?.fileContents;
   }
 
   mounted() {
@@ -87,7 +81,7 @@ export default class Japanese extends Vue {
     this.clear();
     this.displayFace = !this.locked;
     this.translationVisible = false;
-    this.strokesVisible = false;
+    this.setStrokesVisible(false);
   }
 
   previous() {
@@ -148,7 +142,11 @@ export default class Japanese extends Vue {
   }
 
   onStrokeDisplayClicked() {
-    this.strokesVisible = !this.strokesVisible;
+    this.setStrokesVisible(!this.strokesVisible);
+
+    if (this.strokesVisible) {
+      this.findStrokeImageByFileName(this.card?.face)
+    }
   }
 
   onStroke() {
@@ -175,4 +173,11 @@ export default class Japanese extends Vue {
   isKanji(cardValue: string | iKanji): boolean {
     return 'object' === typeof cardValue;
   }
+
+  @JapaneseModule.Action('changeDeck') changeDeck!: (deckName: string) => void;
+  @JapaneseModule.Action('findStrokeImageByFileName') findStrokeImageByFileName!: (fileName: string) => void;
+  @JapaneseModule.Mutation('setCard') setCard!: (card: iCard) => void;
+  @JapaneseModule.Mutation('setCardIndex') setCardIndex!: (index: number) => void;
+  @JapaneseModule.Mutation('setStrokeImageLoading') setStrokeImageLoading!: (strokeImageLoading: boolean) => void;
+  @JapaneseModule.Mutation('setStrokesVisible') setStrokesVisible!: (strokesVisible: boolean) => void;
 }
