@@ -25,7 +25,7 @@ export default class JapaneseModule extends VuexModule {
   @Action async findStrokeImageByFileName(name: string) {
     this.context.commit('setStrokeImageLoading', true);
 
-    await axios.get(API_URL + `/files?fileName=${name}&age=3600`)
+    await axios.get(API_URL + `/files?fileName=${name}`)
     .then((response: AxiosResponse<iFile>) => {
       this.context.commit('setStrokeImage', response.data);
       this.context.commit('setStrokeImageLoading', false);
